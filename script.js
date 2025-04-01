@@ -1,82 +1,64 @@
 let carrito = [];
 
-const cartButton = document.getElementById("cart-button");
-const cartPopup = document.getElementById("cart-popup");
-const cartItems = document.getElementById("cart-items");
-const cartTotal = document.getElementById("cart-total");
-const cartCount = document.getElementById("cart-count");
-const closeCart = document.getElementById("close-cart");
+const $ = id => document.getElementById(id);
+const cartButton = $("cart-button");
+const cartPopup = $("cart-popup");
+const cartItems = $("cart-items");
+const cartTotal = $("cart-total");
+const cartCount = $("cart-count");
+const closeCart = $("close-cart");
+
+const guardarCarrito = () => localStorage.setItem("carrito", JSON.stringify(carrito));
 
 function renderizarCarrito() {
   cartItems.innerHTML = "";
-  let total = 0;
-  let count = 0;
+  let total = 0, count = 0;
 
-  carrito.forEach((producto, index) => {
-    const item = document.createElement("li");
-    const subtotal = producto.precio * producto.cantidad;
+  carrito.forEach((p, i) => {
+    const subtotal = p.precio * p.cantidad;
     total += subtotal;
-    count += producto.cantidad;
+    count += p.cantidad;
 
-    item.innerHTML = `
-      <strong>${producto.nombre}</strong><br>
-      Precio: ${producto.precio} x ${producto.cantidad} = ${subtotal}<br>
-      <button data-action="decrease" data-index="${index}">-</button>
-      <button data-action="increase" data-index="${index}">+</button>
-      <button data-action="remove" data-index="${index}">Eliminar</button>
+    cartItems.innerHTML += `
+      <li>
+        <strong>${p.nombre}</strong><br>
+        Precio: ${p.precio} x ${p.cantidad} = ${subtotal}<br>
+        <button data-action="decrease" data-index="${i}">-</button>
+        <button data-action="increase" data-index="${i}">+</button>
+        <button data-action="remove" data-index="${i}">Eliminar</button>
+      </li>
     `;
-
-    cartItems.appendChild(item);
   });
 
   cartTotal.textContent = `$${total}`;
   cartCount.textContent = count;
-
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-
-  if (count > 0) {
-    cartPopup.classList.add("active");
-  } else {
-    cartPopup.classList.remove("active");
-  }
+  carrito.length ? cartPopup.classList.add("active") : cartPopup.classList.remove("active");
+  guardarCarrito();
 }
 
 function agregarAlCarritoPorId(id) {
-  const producto = productos.find(p => p.id === id);
-  if (!producto) return;
+  const p = productos.find(p => p.id === id);
+  if (!p) return;
 
-  const index = carrito.findIndex(p => p.id === producto.id);
-  if (index !== -1) {
-    if (carrito[index].cantidad < producto.stock) {
-      carrito[index].cantidad++;
-    } else {
-      alert("No hay más stock disponible de este producto.");
-    }
+  const i = carrito.findIndex(c => c.id === id);
+  if (i !== -1) {
+    carrito[i].cantidad < p.stock ? carrito[i].cantidad++ : alert("Out Of Stock.");
   } else {
-    if (producto.stock > 0) {
-      carrito.push({ ...producto, cantidad: 1 });
-    } else {
-      alert("Producto sin stock disponible.");
-    }
+    p.stock > 0 ? carrito.push({ ...p, cantidad: 1 }) : alert("No Stock.");
   }
   renderizarCarrito();
 }
 
-function actualizarCantidad(index, cambio) {
-  const producto = carrito[index];
-  if (cambio === 1 && producto.cantidad >= producto.stock) {
-    alert("Has alcanzado el stock máximo de este producto.");
-    return;
-  }
-  carrito[index].cantidad += cambio;
-  if (carrito[index].cantidad <= 0) {
-    carrito.splice(index, 1);
-  }
+function actualizarCantidad(i, cambio) {
+  const p = carrito[i];
+  if (cambio === 1 && p.cantidad >= p.stock) return alert("Out Of Stock.");
+  p.cantidad += cambio;
+  if (p.cantidad <= 0) carrito.splice(i, 1);
   renderizarCarrito();
 }
 
-function eliminarProducto(index) {
-  carrito.splice(index, 1);
+function eliminarProducto(i) {
+  carrito.splice(i, 1);
   renderizarCarrito();
 }
 
@@ -85,62 +67,43 @@ function vaciarCarrito() {
   renderizarCarrito();
 }
 
-cartButton.addEventListener("click", () => {
-  if (carrito.length > 0) {
-    cartPopup.classList.toggle("active");
-  }
-});
+cartButton.onclick = () => carrito.length && cartPopup.classList.toggle("active");
+closeCart.onclick = () => cartPopup.classList.remove("active");
 
-closeCart.addEventListener("click", () => {
-  cartPopup.classList.remove("active");
-});
-
-cartItems.addEventListener("click", (e) => {
-  const index = parseInt(e.target.dataset.index);
-  if (e.target.dataset.action === "increase") {
-    actualizarCantidad(index, 1);
-  } else if (e.target.dataset.action === "decrease") {
-    actualizarCantidad(index, -1);
-  } else if (e.target.dataset.action === "remove") {
-    eliminarProducto(index);
-  }
-});
+cartItems.onclick = e => {
+  const { action, index } = e.target.dataset;
+  if (action === "increase") actualizarCantidad(+index, 1);
+  if (action === "decrease") actualizarCantidad(+index, -1);
+  if (action === "remove") eliminarProducto(+index);
+};
 
 window.addEventListener("DOMContentLoaded", () => {
-  const carritoGuardado = localStorage.getItem("carrito");
-  if (carritoGuardado) {
-    carrito = JSON.parse(carritoGuardado);
-    renderizarCarrito();
-  }
+  carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  renderizarCarrito();
 
-  const productList = document.getElementById("product-list");
-
-  productos.forEach(producto => {
-    const card = document.createElement("div");
-    card.classList.add("product");
-
-    card.innerHTML = `
-      <img src="${producto.imagen}" alt="${producto.nombre}">
-      <h3>${producto.nombre}</h3>
-      <p>${producto.descripcion}</p>
-      <p><strong>$${producto.precio}</strong></p>
-      <button class="add-to-cart" data-id="${producto.id}">Agregar al Carrito</button>
+  const productList = $("product-list");
+  productos.forEach(p => {
+    productList.innerHTML += `
+      <div class="product">
+        <img src="${p.imagen}" alt="${p.nombre}">
+        <h3>${p.nombre}</h3>
+        <p>${p.descripcion}</p>
+        <p><strong>$${p.precio}</strong></p>
+        <button class="add-to-cart" data-id="${p.id}">Agregar al Carrito</button>
+      </div>
     `;
-
-    productList.appendChild(card);
   });
 
-  productList.addEventListener("click", (e) => {
+  productList.onclick = e => {
     if (e.target.classList.contains("add-to-cart")) {
-      const id = parseInt(e.target.dataset.id);
-      agregarAlCarritoPorId(id);
+      agregarAlCarritoPorId(+e.target.dataset.id);
     }
-  });
+  };
 
   const btnVaciar = document.createElement("button");
   btnVaciar.textContent = "Vaciar Carrito";
   btnVaciar.id = "vaciar-carrito";
   btnVaciar.style.marginTop = "10px";
-  btnVaciar.addEventListener("click", vaciarCarrito);
+  btnVaciar.onclick = vaciarCarrito;
   document.querySelector(".cart-content").appendChild(btnVaciar);
 });
