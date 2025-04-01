@@ -1,51 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> F1 Store</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <script src="data.js"></script>
-    <script src="script.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>F1 Store</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="data.js"></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="images/logo.png" alt="Logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Store</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="icons">
-            <i class="fas fa-envelope"></i>
-            <i class="fas fa-phone"></i>
-            <i class="fas fa-shopping-cart" id="cart-icon"></i>
-            <i class="fas fa-user"></i>
-        </div>
-    </header>
-    
-    <main id="product-list"></main>
-
-    <div id="cart-popup" class="cart-popup">
-        <div class="cart-content">
-            <span class="close-btn" id="close-cart">&times;</span>
-            <h2>Carrito de Compras</h2>
-            <ul id="cart-items"></ul>
-            <p>Total: <span id="cart-total">$0</span></p>
-            <button id="checkout">Comprar</button>
-        </div>
+  <header>
+    <div class="logo">
+      <img src="images/logo.png" alt="Logo" />
     </div>
-    
-    <footer>
-        <p>&copy;2025 F1 Online Store. All Rights Reserved. </p>
-    </footer>
+    <nav>
+        <ul>
+          <li><a href="#">Tienda</a></li>
+          <li><a href="#">Tickets</a></li>
+          <li><a href="#">Carreras</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </nav>
+    <div class="cart-button-container">
+      <button id="cart-button"> Carrito (<span id="cart-count">0</span>)</button>
+    </div>
+  </header>
+
+  <main id="product-list"></main>
+
+  <div id="cart-popup" class="cart-popup">
+    <div class="cart-content">
+      <span class="close-btn" id="close-cart">&times;</span>
+      <h2>Carrito</h2>
+      <ul id="cart-items"></ul>
+      <p>Total: <span id="cart-total">$0</span></p>
+      <button id="checkout">Comprar</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 F1 Online Store. Light out and away we go. </p>
+  </footer>
 </body>
 </html>

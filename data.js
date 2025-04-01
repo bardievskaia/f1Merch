@@ -1,41 +1,23 @@
 const productos = [
-    { id: 1, nombre: "MV1 2025 Team Polo", imagen: "", descripcion: "New MV1 2025 Team Polo", precio: 90, stock: 5 },
-    { id: 2, nombre: "RB 2025 Team Shirt", imagen: "img/producto2.jpg", descripcion: "New RB 2025 Team Shirt", precio: 85, stock: 8 },
-    { id: 3, nombre: "RB 2025 Team Cap", imagen: "img/producto3.jpg", descripcion: "New RB 2025 Team Cap", precio: 50, stock: 3 },
-    { id: 4, nombre: "LH44 2025 Helmet", imagen: "img/producto3.jpg", descripcion: "Lewis Hamilton 2025 miniature helmet", precio: 90, stock: 3 },
-    { id: 5, nombre: "Ferrari 2025 Team Shirt", imagen: "img/producto3.jpg", descripcion: "New Ferrari 2025 Team Shirt", precio: 85, stock: 3 },
-    { id: 6, nombre: "Ferrari 2025 Team Cap", imagen: "img/producto3.jpg", descripcion: "New Ferrari 2025 Team Cap", precio: 50, stock: 3 },
-    { id: 7, nombre: "LN4 2025 Team Shirt", imagen: "img/producto3.jpg", descripcion: "New Lando 2025 Team Shirt", precio: 90, stock: 3 },
-    { id: 8, nombre: "McLaren 2025 Team Shirt", imagen: "img/producto3.jpg", descripcion: "New McLaren 2025 Team Shirt", precio: 85, stock: 3 },
-    { id: 9, nombre: "McLaren 2025 Team Cap", imagen: "img/producto3.jpg", descripcion: "New McLaren 2025 Team Cap", precio: 50, stock: 3 },
-    { id: 10, nombre: "GS63 2025 Team Shirt", imagen: "img/producto3.jpg", descripcion: "New GS63 2025 Team Shirt", precio: 90, stock: 3 },
-    { id: 11, nombre: "Mercedes 2025 Team Shirt", imagen: "img/producto3.jpg", descripcion: "New Mercedes 2025 Team Shirt", precio: 85, stock: 3 },
-    { id: 12, nombre: "Mercedes 2025 Team Cap", imagen: "img/producto3.jpg", descripcion: "New Mercedes 2025 Team Cap", precio: 50, stock: 3 },
-    { id: 13, nombre: "ALO14 2025 Team Shirt", imagen: "img/producto3.jpg", descripcion: "Descripción del producto 3", precio: 90, stock: 3 },
-    { id: 14, nombre: "Producto 14", imagen: "img/producto3.jpg", descripcion: "Descripción del producto 3", precio: 85, stock: 3 },
-    { id: 15, nombre: "AM 2025 Team Cap", imagen: "img/producto3.jpg", descripcion: "New Aston Martin 2025 Team Cap", precio: 50, stock: 3 },
-    { id: 16, nombre: "Williams 2025 Team Sweatshirt", imagen: "img/producto3.jpg", descripcion: "Descripción del producto 3", precio: 90, stock: 3 },
-    { id: 17, nombre: "Producto 17", imagen: "img/producto3.jpg", descripcion: "Descripción del producto 3", precio: 85, stock: 3 },
-    { id: 18, nombre: "Williams 2025 Team Cap", imagen: "img/producto3.jpg", descripcion: "New Williams 2025 Team Cap", precio: 50, stock: 3 },
-    { id: 19, nombre: "YT22 2025 Team Shirt", imagen: "img/producto3.jpg", descripcion: "Descripción del producto 3", precio: 90, stock: 3 },
-    { id: 20, nombre: "Producto 20", imagen: "img/producto3.jpg", descripcion: "Descripción del producto 3", precio: 85, stock: 3 },
-    { id: 21, nombre: "VCARB 2025 Team Cap", imagen: "img/producto3.jpg", descripcion: "New VCarb 2025 Team Cap", precio: 50, stock: 3 },
+    { id: 1, nombre: "MV1 2025 Team Polo", imagen: "images/RB.avif", descripcion: "New MV1 2025 Team Polo", precio: 90, stock: 5 },
+    { id: 2, nombre: "RB 2025 Team Shirt", imagen: "images/VER1.avif", descripcion: "New RB 2025 Team Shirt", precio: 85, stock: 8 },
+    { id: 3, nombre: "RB 2025 Team Cap", imagen: "images/RBCap.avif", descripcion: "New RB 2025 Team Cap", precio: 50, stock: 3 },
+    { id: 4, nombre: "LH44 2025 Helmet", imagen: "images/HAMhelmet.avif", descripcion: "Lewis Hamilton 2025 miniature helmet", precio: 90, stock: 3 },
+    { id: 5, nombre: "Ferrari 2025 Team Shirt", imagen: "images/FERRARI.jpg", descripcion: "New Ferrari 2025 Team Shirt", precio: 85, stock: 3 },
+    { id: 6, nombre: "Ferrari 2025 Team Cap", imagen: "images/FERRARICap.jpg", descripcion: "New Ferrari 2025 Team Cap", precio: 50, stock: 3 },
+    { id: 7, nombre: "LN4 2025 Team Shirt", imagen: "images/NORRIS.avif", descripcion: "New Lando 2025 Team Shirt", precio: 90, stock: 3 },
+    { id: 8, nombre: "McLaren 2025 Team Shirt", imagen: "images/ML.avif", descripcion: "New McLaren 2025 Team Shirt", precio: 85, stock: 3 },
+    { id: 9, nombre: "McLaren 2025 Team Cap", imagen: "images/MLCap.avif", descripcion: "New McLaren 2025 Team Cap", precio: 50, stock: 3 },
+    { id: 10, nombre: "GS63 2025 Team Shirt", imagen: "images/RUSSELL.avif", descripcion: "New GS63 2025 Team Shirt", precio: 90, stock: 3 },
+    { id: 11, nombre: "Mercedes 2025 Team Shirt", imagen: "images/MB.avif", descripcion: "New Mercedes 2025 Team Shirt", precio: 85, stock: 3 },
+    { id: 12, nombre: "Mercedes 2025 Team Cap", imagen: "images/MBCap.avif", descripcion: "New Mercedes 2025 Team Cap", precio: 50, stock: 3 },
+    { id: 13, nombre: "ALO14 2025 Team Shirt", imagen: "images/ALO.webp", descripcion: "New Alonso 2025 Team Shirt", precio: 90, stock: 3 },
+    { id: 14, nombre: "AM 2025 Team Shirt", imagen: "images/AM.avif", descripcion: "New AM 2025 Team Shirt", precio: 85, stock: 3 },
+    { id: 15, nombre: "AM 2025 Team Cap", imagen: "images/AMCap.avif", descripcion: "New Aston Martin 2025 Team Cap", precio: 50, stock: 3 },
+    { id: 16, nombre: "Williams 2025 Team Sweatshirt", imagen: "images/WILLIAMS.avif", descripcion: "New Williams 2025 Sweatshirt", precio: 90, stock: 3 },
+    { id: 17, nombre: "Williams 2025 Team Cap", imagen: "images/WCap.avif", descripcion: "Williams 2025 Team Cap", precio: 85, stock: 3 },
+    { id: 18, nombre: "Williams 2025 Mansell Lego", imagen: "images/W.avif", descripcion: "New Williams Mansell Lego", precio: 250, stock: 3 },
+    { id: 19, nombre: "YT22 2025 Team Shirt", imagen: "images/VCARB.avif", descripcion: "YT 2025 Special Edition Japan Race Weekend", precio: 90, stock: 3 },
+    { id: 20, nombre: "Producto 20", imagen: "images/VCCap.avif", descripcion: "2025 YT Cap Special Edition Japan Race Weekend", precio: 85, stock: 3 },
+    { id: 21, nombre: "VCARB 2025 Team Cap", imagen: "images/VCPolo.avif", descripcion: "New VCarb 2025 Team Cap", precio: 50, stock: 3 },
 ];
-
-// Función para cargar los productos dinámicamente
-document.addEventListener("DOMContentLoaded", () => {
-    const productList = document.getElementById("product-list");
-
-    productos.forEach(producto => {
-        const productCard = document.createElement("div");
-        productCard.classList.add("product");
-        productCard.innerHTML = `
-            <img src="${producto.imagen}" alt="${producto.nombre}">
-            <h3>${producto.nombre}</h3>
-            <p>${producto.descripcion}</p>
-            <p>Precio: $${producto.precio}</p>
-            <button class="add-to-cart" data-id="${producto.id}">Agregar al Carrito</button>
-        `;
-        productList.appendChild(productCard);
-    });
-});
